@@ -49,6 +49,7 @@ import { internDrawingFiles as internDrawingFilesWithPrisma } from "./fileProces
 import { initS3, isS3Enabled, checkBucketReachable } from "./s3";
 import { startScheduledBackups } from "./backups/scheduler";
 import { runStorageDoctor } from "./server/storageDoctor";
+import { registerMcpRoutes } from "./mcp";
 const backendRoot = path.resolve(__dirname, "../");
 const redactDatabaseUrl = (value: string | undefined): string => {
   if (!value) return "<unset>";
@@ -625,6 +626,19 @@ registerImportExportRoutes({
   MAX_IMPORT_DRAWING_BYTES,
   MAX_IMPORT_TOTAL_EXTRACTED_BYTES,
 });
+if (config.mcpEnabled) {
+  registerMcpRoutes(app, {
+    prisma,
+    io,
+    requireAuth,
+    parseJsonField,
+    invalidateDrawingsCache,
+    ensureTrashCollection,
+    sanitizeText,
+    publicBaseUrl: allowedOrigins[0],
+    version: getBackendVersion(),
+  });
+}
 app.use(errorHandler);
 export { app, httpServer };
 const isMain = typeof require !== "undefined" && require.main === module;

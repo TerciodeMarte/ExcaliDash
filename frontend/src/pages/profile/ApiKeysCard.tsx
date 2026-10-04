@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Copy, KeyRound, Trash2 } from "lucide-react";
 import * as api from "../../api";
 import { ConfirmModal } from "../../components/ConfirmModal";
+import { McpSetupSnippets } from "./McpSetupSnippets";
 import { InfoPopover } from "../../components/InfoPopover";
 import {
   SettingsCard,
@@ -226,6 +227,7 @@ export const ApiKeysCard: React.FC<Props> = ({ disabled, onSuccess }) => {
                     Done
                   </button>
                 </div>
+                <McpSetupSnippets token={generatedToken} />
               </div>
             )}
 

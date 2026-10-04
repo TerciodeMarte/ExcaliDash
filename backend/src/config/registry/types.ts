@@ -12,6 +12,7 @@ export interface EnvVarSpec {
     | "Backups"
     | "Update check"
     | "Link sharing"
+    | "MCP server"
     | "AI"
     | "Frontend (build-time)";
   kind: EnvKind;

@@ -41,3 +41,13 @@ export const linkSharingEnv: readonly EnvVarSpec[] = [
     doc: "Maximum allowed lifetime (ms) for any share link (90 days).",
   },
 ];
+
+export const mcpEnv: readonly EnvVarSpec[] = [
+  {
+    name: "MCP_ENABLED",
+    group: "MCP server",
+    kind: "boolean",
+    default: "true",
+    doc: "Expose the Model Context Protocol endpoint at /mcp (requires an API key, or AUTH_MODE=disabled).",
+  },
+];

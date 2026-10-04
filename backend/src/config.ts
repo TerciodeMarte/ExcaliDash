@@ -95,6 +95,7 @@ interface Config {
   s3: S3Config;
   linkShare: LinkShareConfig;
   updateCheck: UpdateCheckConfig;
+  mcpEnabled: boolean;
   mail: MailConfig;
 }
 
@@ -406,6 +407,7 @@ export const config: Config = {
   s3: resolveS3Config(),
   linkShare: resolveLinkShareConfig(),
   updateCheck: resolveUpdateCheckConfig(),
+  mcpEnabled: readBoolean("MCP_ENABLED", true),
   mail: resolveMailConfig(),
 };
 if (config.nodeEnv === "production") {

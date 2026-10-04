@@ -72,3 +72,9 @@ Set `ENABLE_PASSWORD_RESET=true`, select `MAIL_TRANSPORT`, and configure either 
 After configuring delivery, users can select **Forgot your password?** on the sign-in page to request a reset link.
 
 <ThemeScreenshot light="/images/screenshots/password-reset-light.png" dark="/images/screenshots/password-reset.png" alt="Password reset request form when the feature is enabled" />
+
+## MCP server
+
+| Variable      | Default | Purpose                                                                   |
+| ------------- | ------- | ------------------------------------------------------------------------- |
+| `MCP_ENABLED` | `true`  | Exposes the [MCP endpoint](/guide/mcp) at `/api/mcp`; requires an API key |

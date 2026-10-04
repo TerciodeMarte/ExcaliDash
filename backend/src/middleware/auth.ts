@@ -27,6 +27,7 @@ declare global {
         mustResetPassword?: boolean;
         impersonatorId?: string;
         authCredentialType?: "jwt" | "apiKey" | "bootstrap";
+        apiKeyScopes?: string[];
       };
       principal?: { kind: "user"; userId: string };
       authError?: { code: "INVALID_ACCESS_TOKEN" | "ACCESS_TOKEN_MISSING" };
@@ -160,6 +161,14 @@ const authorizeApiKeyRequest = (
       message: "Drawing-scoped tokens are not supported in this release",
     });
     return false;
+  }
+  // MCP checks scopes per tool call, so any scoped key may reach the endpoint.
+  if (
+    req.method === "POST" &&
+    normalizeRequestPath(req) === "/mcp" &&
+    scopes.length > 0
+  ) {
+    return true;
   }
   const requiredScope = getRequiredApiKeyScope(req);
   if (requiredScope && scopes.includes(requiredScope)) {
@@ -344,6 +353,7 @@ export const createAuthMiddleware = ({
           role: user.role,
           mustResetPassword: user.mustResetPassword,
           authCredentialType: "apiKey",
+          apiKeyScopes: scopes,
         };
         req.principal = { kind: "user", userId: user.id };
         next();
