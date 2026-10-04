@@ -48,6 +48,6 @@ export const mcpEnv: readonly EnvVarSpec[] = [
     group: "MCP server",
     kind: "boolean",
     default: "true",
-    doc: "Expose the Model Context Protocol endpoint at /mcp (requires an API key, or AUTH_MODE=disabled).",
+    doc: "Expose the Model Context Protocol endpoint at /mcp (requires a bearer API key, also when AUTH_MODE=disabled).",
   },
 ];

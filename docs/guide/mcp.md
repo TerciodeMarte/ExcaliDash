@@ -21,4 +21,4 @@ The API key dialog shows these commands pre-filled with the new token.
 
 Tools: `list_drawings`, `get_drawing`, `create_drawing`, `update_drawing`, `create_diagram` (auto-layout), `add_elements`, `update_elements`, `delete_elements`, `list_collections`, `create_collection`. Tool calls respect the key's scopes and drawing sharing.
 
-Disable the endpoint with `MCP_ENABLED=false`.
+Every request needs a bearer API key, including with `AUTH_MODE=disabled`. Disable the endpoint with `MCP_ENABLED=false`.
